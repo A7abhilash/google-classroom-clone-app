@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-paper';
+import DetailsHeader from '../components/classroom/DetailsHeader';
 import DisplayClassPeople from '../components/classroom/DisplayClassPeople';
+import DisplayClassPosts from '../components/classroom/DisplayClassPosts';
 import SelectOptions from '../components/classroom/SelectOptions';
 import Loading from '../containers/Loading';
 import {useAuth} from '../contexts/AuthContext';
@@ -9,10 +11,10 @@ import useClass from '../hooks/useClass';
 import {globalColors, globalStyles} from '../styles/styles';
 
 export default function Classroom({route, navigation}) {
-  const {params} = route;
+  const {classId} = route.params;
   const {currentUser} = useAuth();
   const {error, currentClass, materials, assignments, isTeacher} = useClass(
-    params.classId,
+    classId,
   );
   const [selectedOption, setSelectedOption] = useState('Materials');
 
@@ -20,13 +22,14 @@ export default function Classroom({route, navigation}) {
     switch (selectedOption) {
       case 'Assignments':
         return (
-          <></>
-          //   <DisplayClassPosts
-          // 	items={assignments}
-          // 	type="assignment"
-          // 	classLink={`/classroom/${classId}`}
-          // 	isTeacher={isTeacher}
-          //   />
+          <DisplayClassPosts
+            items={assignments}
+            type="assignment"
+            navigateToScreen={id =>
+              navigation.navigate('Material', {materialId: id})
+            }
+            isTeacher={isTeacher}
+          />
         );
       case 'People':
         return (
@@ -37,12 +40,13 @@ export default function Classroom({route, navigation}) {
         );
       default:
         return (
-          <></>
-          //   <DisplayClassPosts
-          // 	items={materials}
-          // 	type="material"
-          // 	classLink={`/classroom/${classId}`}
-          //   />
+          <DisplayClassPosts
+            items={materials}
+            type="material"
+            navigateToScreen={id =>
+              navigation.navigate('Material', {materialId: id})
+            }
+          />
         );
     }
   };
@@ -63,6 +67,7 @@ export default function Classroom({route, navigation}) {
   // 	  return list;
   // 	}
   //   };
+
   useEffect(() => {
     if (error) {
       navigation.goBack();
@@ -71,12 +76,13 @@ export default function Classroom({route, navigation}) {
 
   return currentClass != null ? (
     <View style={globalStyles.component}>
-      <Text style={{color: globalColors.Light}}>{currentClass.className}</Text>
+      <DetailsHeader currentClass={currentClass} isTeacher={isTeacher} />
+
       <SelectOptions
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      {switchContent()}
+      {materials !== null && assignments !== null && switchContent()}
     </View>
   ) : (
     <Loading />

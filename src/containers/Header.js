@@ -22,7 +22,8 @@ const Left = () => (
 
 const Header = ({navigateToProfile}) => {
   return (
-    <Appbar.Header style={{backgroundColor: globalColors.Dark}}>
+    <Appbar.Header
+      style={{backgroundColor: globalColors.Dark, marginHorizontal: -10}}>
       {/* <Appbar.Content title="Google Classroom Clone" /> */}
       <Appbar.Content title={<Left />} />
       <Appbar.Action

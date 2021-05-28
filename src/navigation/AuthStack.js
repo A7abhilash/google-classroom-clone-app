@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../authScreens/Home';
 import Profile from '../authScreens/Profile';
 import {globalColors} from '../styles/styles';
+import Classroom from '../authScreens/Classroom';
 
 export default function AuthStack() {
   const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ export default function AuthStack() {
         component={Home}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="Classroom" component={Classroom} />
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );

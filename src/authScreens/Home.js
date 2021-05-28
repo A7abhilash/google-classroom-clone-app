@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, SafeAreaView} from 'react-native';
+import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {Divider, Subheading} from 'react-native-paper';
 import Header from '../containers/Header';
 import {globalColors, globalStyles} from '../styles/styles';
@@ -28,17 +28,52 @@ export default function Home({navigation}) {
     <SafeAreaView style={globalStyles.component}>
       <Header navigateToProfile={() => navigation.navigate('Profile')} />
 
-      {classesAsTeacher?.length && (
+      {classesAsTeacher?.length > 0 && (
         <View style={styles.view}>
-          <Subheading style={styles.subtitle}>Teacher</Subheading>
-          {classesAsTeacher.map(item => (
-            <Class item={item} key={item.id} />
-          ))}
+          <FlatList
+            data={classesAsTeacher}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => (
+              <Class
+                item={item}
+                key={item.id}
+                navigateToClassroom={navigation.navigate}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              classesAsTeacher.length > 0 && (
+                <Subheading style={styles.subtitle}>Teacher</Subheading>
+              )
+            }
+          />
         </View>
       )}
 
-      {classesAsTeacher?.length && classesAsStudent?.length && (
+      {classesAsTeacher?.length > 0 && classesAsStudent?.length > 0 && (
         <Divider style={styles.divider} />
+      )}
+
+      {classesAsStudent?.length > 0 && (
+        <View style={styles.view}>
+          <FlatList
+            data={classesAsStudent}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => (
+              <Class
+                item={item}
+                key={item.id}
+                navigateToClassroom={navigation.navigate}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+            ListHeaderComponent={
+              classesAsStudent?.length > 0 && (
+                <Subheading style={styles.subtitle}>Student</Subheading>
+              )
+            }
+          />
+        </View>
       )}
     </SafeAreaView>
   );

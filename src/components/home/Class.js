@@ -1,13 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Title} from 'react-native-paper';
 import {globalColors, globalStyles} from '../../styles/styles';
 
-export default function Class({item}) {
+export default function Class({item, navigateToClassroom}) {
   return (
     <View style={styles.container}>
-      <Title style={styles.subjectName}>{item.subjectName}</Title>
-      <Text style={styles.className}>{item.className}</Text>
+      <TouchableOpacity
+        onPress={() => navigateToClassroom('Classroom', {classId: item.id})}>
+        <Title style={styles.subjectName}>{item.subjectName}</Title>
+        <Text style={styles.className}>{item.className}</Text>
+      </TouchableOpacity>
     </View>
   );
 }

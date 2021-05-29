@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import {View} from 'react-native';
 import DetailsHeader from '../components/classroom/DetailsHeader';
 import DisplayClassPeople from '../components/classroom/DisplayClassPeople';
 import DisplayClassPosts from '../components/classroom/DisplayClassPosts';
@@ -9,7 +8,7 @@ import SelectOptions from '../components/classroom/SelectOptions';
 import Loading from '../containers/Loading';
 import {useAuth} from '../contexts/AuthContext';
 import useClass from '../hooks/useClass';
-import {globalColors, globalStyles} from '../styles/styles';
+import {globalStyles} from '../styles/styles';
 
 export default function Classroom({route, navigation}) {
   const {classId} = route.params;
@@ -96,7 +95,3 @@ export default function Classroom({route, navigation}) {
     <Loading />
   );
 }
-
-// const styles = StyleSheet.create({
-//   style,
-// });

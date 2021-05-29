@@ -31,9 +31,7 @@ export default function DisplayClassPosts({
   };
 
   const renderItem = ({item}) => (
-    <TouchableOpacity
-    // onPress={()=>navigateToScreen(item.id)}
-    >
+    <TouchableOpacity onPress={() => navigateToScreen(item.id)}>
       <View style={styles.post}>
         <Image
           source={type === 'assignment' ? icons.assignment : icons.material}

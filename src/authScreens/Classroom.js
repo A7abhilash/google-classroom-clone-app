@@ -4,6 +4,7 @@ import {Button} from 'react-native-paper';
 import DetailsHeader from '../components/classroom/DetailsHeader';
 import DisplayClassPeople from '../components/classroom/DisplayClassPeople';
 import DisplayClassPosts from '../components/classroom/DisplayClassPosts';
+import PendingWork from '../components/classroom/PendingWork';
 import SelectOptions from '../components/classroom/SelectOptions';
 import Loading from '../containers/Loading';
 import {useAuth} from '../contexts/AuthContext';
@@ -25,8 +26,8 @@ export default function Classroom({route, navigation}) {
           <DisplayClassPosts
             items={assignments}
             type="assignment"
-            navigateToScreen={id =>
-              navigation.navigate('Material', {materialId: id})
+            navigateToScreen={assignmentId =>
+              navigation.navigate('Assignment', {assignmentId, classId})
             }
             isTeacher={isTeacher}
           />
@@ -43,30 +44,30 @@ export default function Classroom({route, navigation}) {
           <DisplayClassPosts
             items={materials}
             type="material"
-            navigateToScreen={id =>
-              navigation.navigate('Material', {materialId: id})
+            navigateToScreen={materialId =>
+              navigation.navigate('Material', {materialId, classId})
             }
           />
         );
     }
   };
 
-  //   const getPendingWork = () => {
-  // 	if (assignments) {
-  // 	  let list = [];
-  // 	  assignments.forEach((assignment) => {
-  // 		let flag = 1;
-  // 		for (const submission of assignment.submissions) {
-  // 		  if (submission.email === currentUser.email) {
-  // 			flag = 0;
-  // 			break;
-  // 		  }
-  // 		}
-  // 		flag && list.push(assignment);
-  // 	  });
-  // 	  return list;
-  // 	}
-  //   };
+  const getPendingWork = () => {
+    if (assignments) {
+      let list = [];
+      assignments.forEach(assignment => {
+        let flag = 1;
+        for (const submission of assignment.submissions) {
+          if (submission.email === currentUser.email) {
+            flag = 0;
+            break;
+          }
+        }
+        flag && list.push(assignment);
+      });
+      return list;
+    }
+  };
 
   useEffect(() => {
     if (error) {
@@ -77,7 +78,14 @@ export default function Classroom({route, navigation}) {
   return currentClass != null ? (
     <View style={globalStyles.component}>
       <DetailsHeader currentClass={currentClass} isTeacher={isTeacher} />
-
+      {currentClass && !isTeacher && (
+        <PendingWork
+          assignments={getPendingWork()}
+          navigateToScreen={assignmentId =>
+            navigation.navigate('Assignment', {assignmentId, classId})
+          }
+        />
+      )}
       <SelectOptions
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}

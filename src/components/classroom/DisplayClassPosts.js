@@ -38,8 +38,8 @@ export default function DisplayClassPosts({
         <Image
           source={type === 'assignment' ? icons.assignment : icons.material}
           style={{
-            width: 30,
-            height: 30,
+            width: 25,
+            height: 25,
             marginRight: 10,
             tintColor: isSubmitted(item.submissions),
           }}

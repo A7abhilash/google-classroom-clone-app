@@ -5,6 +5,7 @@ import Profile from '../authScreens/Profile';
 import {globalColors} from '../styles/styles';
 import Classroom from '../authScreens/Classroom';
 import Material from '../authScreens/Material';
+import Assignment from '../authScreens/Assignment';
 
 export default function AuthStack() {
   const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ export default function AuthStack() {
       />
       <Stack.Screen name="Classroom" component={Classroom} />
       <Stack.Screen name="Material" component={Material} />
+      <Stack.Screen name="Assignment" component={Assignment} />
       <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );

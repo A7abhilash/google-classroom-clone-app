@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
-import Details from '../components/assignment/Details';
+import {View} from 'react-native';
+import Details from '../components/material/Details';
 import Loading from '../containers/Loading';
 import {useMsg} from '../contexts/MsgContext';
 import useClass from '../hooks/useClass';

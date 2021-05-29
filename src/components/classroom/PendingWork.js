@@ -9,7 +9,7 @@ export default function PendingWork({assignments, navigateToScreen}) {
     <View style={styles.container}>
       <View style={styles.topView}>
         <MaterialIcons
-          name="edit"
+          name="sticky-note-2"
           size={18}
           color={globalColors.Light}
           style={{
@@ -23,7 +23,7 @@ export default function PendingWork({assignments, navigateToScreen}) {
           assignments?.map(item => (
             <TouchableOpacity
               key={item.id}
-              //   onPress={() => navigateToScreen(item.id)}
+              onPress={() => navigateToScreen(item.id)}
               style={styles.view}>
               <MaterialIcons
                 name="arrow-right"

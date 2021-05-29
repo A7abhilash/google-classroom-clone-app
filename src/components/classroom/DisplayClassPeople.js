@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: globalColors.Light,
-    fontSize: 18,
-    marginLeft: 20,
+    fontSize: 22,
+    marginLeft: 15,
   },
   you: {
     marginLeft: 5,

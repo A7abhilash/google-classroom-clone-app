@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, Linking, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Linking,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, Caption, Headline, Paragraph} from 'react-native-paper';
 import icons from '../../assets/icons';
 import {globalColors} from '../../styles/styles';
@@ -41,24 +48,22 @@ function Details({content, type}) {
         <Paragraph style={styles.desc}>{content.description}</Paragraph>
         {content?.file.url && (
           <View style={styles.btnView}>
-            <Button
+            <TouchableOpacity
               onPress={() => openLink(content.file.url)}
-              mode="contained"
-              color={globalColors.Danger}
-              style={{alignItems: 'center', flexDirection: 'row'}}>
+              style={styles.btn}>
               <MaterialIcons
                 name="insert-drive-file"
-                size={20}
+                size={22}
                 color={globalColors.Dark}
               />
               <Text
                 style={{
-                  fontSize: 18,
+                  fontSize: 20,
                   color: globalColors.Dark,
                 }}>
                 {content.file.name}
               </Text>
-            </Button>
+            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -87,5 +92,13 @@ const styles = StyleSheet.create({
   btnView: {
     marginVertical: 20,
     flexWrap: 'wrap',
+  },
+  btn: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: globalColors.Danger,
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 });

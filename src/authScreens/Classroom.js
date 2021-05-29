@@ -44,7 +44,10 @@ export default function Classroom({route, navigation}) {
             items={materials}
             type="material"
             navigateToScreen={materialId =>
-              navigation.navigate('Material', {materialId, classId})
+              navigation.navigate('Material', {
+                materialId,
+                classId,
+              })
             }
           />
         );

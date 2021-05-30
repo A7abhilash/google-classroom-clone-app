@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {Divider, Subheading} from 'react-native-paper';
-import Header from '../containers/Header';
 import {globalColors, globalStyles} from '../styles/styles';
 import {useClassroom} from '../contexts/ClassroomContext';
 import Loading from '../containers/Loading';
@@ -36,8 +35,6 @@ export default function Home({navigation}) {
 
   return (
     <SafeAreaView style={globalStyles.component}>
-      {/* <Header navigateToProfile={() => navigation.navigate('Profile')} /> */}
-
       {classesAsTeacher?.length > 0 && (
         <View style={styles.view}>
           <FlatList

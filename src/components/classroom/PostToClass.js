@@ -86,7 +86,7 @@ export default function PostToClass({
         onPress={() => setOpenModal(true)}>
         <MaterialIcons name="post-add" size={32} color={globalColors.Dark} />
       </TouchableOpacity>
-      <Modal visible={openModal} animationType="slide">
+      <Modal visible={openModal} animationType="fade">
         <ScrollView style={styles.component}>
           <TopView setOpenModal={setOpenModal} />
           <View style={styles.midView}>
@@ -198,5 +198,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 5,
     paddingHorizontal: 30,
+  },
+  text: {
+    color: globalColors.Secondary,
+    marginBottom: 10,
+    marginTop: -10,
+    marginLeft: 10,
   },
 });

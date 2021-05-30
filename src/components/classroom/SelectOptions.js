@@ -33,18 +33,20 @@ const styles = StyleSheet.create({
   },
   selectedOption: {
     borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
     backgroundColor: globalColors.Warning,
   },
   selected: {
     fontWeight: 'bold',
     color: globalColors.Dark,
     textAlign: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
   },
   notSelected: {
     fontWeight: 'bold',
     color: globalColors.Secondary,
     textAlign: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
   },
 });

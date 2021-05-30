@@ -5,13 +5,13 @@ import {globalColors, globalStyles} from '../../styles/styles';
 
 export default function Class({item, navigateToClassroom}) {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => navigateToClassroom('Classroom', {classId: item.id})}>
+    <TouchableOpacity
+      onPress={() => navigateToClassroom('Classroom', {classId: item.id})}>
+      <View style={styles.container}>
         <Title style={styles.subjectName}>{item.subjectName}</Title>
         <Text style={styles.className}>{item.className}</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 

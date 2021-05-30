@@ -73,7 +73,7 @@ export function ClassroomProvider({children}) {
     }
   }
 
-  async function joinClass(classId, email, userId) {
+  async function joinClass(classId, email) {
     try {
       setLoading(true);
       const res = await database.classrooms().doc(classId).get();
@@ -85,7 +85,7 @@ export function ClassroomProvider({children}) {
       const data = database.formatDocument(res);
       let msg = '';
 
-      if (data.teacher.toString() === userId.toString()) {
+      if (data.teacher === email) {
         msg = 'You are already the teacher of this class';
       } else if (data.students.includes(email)) {
         msg = 'You are already a student of this class';

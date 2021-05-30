@@ -7,6 +7,7 @@ import Classroom from '../authScreens/Classroom';
 import Material from '../authScreens/Material';
 import Assignment from '../authScreens/Assignment';
 import CreateClass from '../components/home/CreateClass';
+import JoinClass from '../components/home/JoinClass';
 
 export default function AuthStack() {
   const Stack = createStackNavigator();
@@ -27,6 +28,7 @@ export default function AuthStack() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Create Class" component={CreateClass} />
+      <Stack.Screen name="Join Class" component={JoinClass} />
       <Stack.Screen name="Classroom" component={Classroom} />
       <Stack.Screen name="Material" component={Material} />
       <Stack.Screen name="Assignment" component={Assignment} />

@@ -7,6 +7,7 @@ import {useClassroom} from '../contexts/ClassroomContext';
 import Loading from '../containers/Loading';
 import Class from '../components/home/Class';
 import NoClass from '../components/home/NoClass';
+import AddClassButton from '../components/home/AddClassButton';
 
 export default function Home({navigation}) {
   const [classesAsTeacher, setClassesAsTeacher] = useState(null);
@@ -76,6 +77,8 @@ export default function Home({navigation}) {
       {classesAsTeacher?.length === 0 && classesAsStudent?.length === 0 && (
         <NoClass />
       )}
+
+      <AddClassButton navigateToScreen={val => navigation.navigate(val)} />
     </SafeAreaView>
   );
 }

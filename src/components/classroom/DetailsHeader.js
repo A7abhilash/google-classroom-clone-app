@@ -22,6 +22,7 @@ export default function DetailsHeader({currentClass, isTeacher}) {
           <Button
             mode="contained"
             color={globalColors.Info}
+            // post-add
             onPress={() => setOpenModal(true)}>
             Post
           </Button>

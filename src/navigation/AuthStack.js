@@ -8,6 +8,7 @@ import Material from '../authScreens/Material';
 import Assignment from '../authScreens/Assignment';
 import CreateClass from '../components/home/CreateClass';
 import JoinClass from '../components/home/JoinClass';
+import Header from '../containers/Header';
 
 export default function AuthStack() {
   const Stack = createStackNavigator();
@@ -25,7 +26,11 @@ export default function AuthStack() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{headerShown: false}}
+        options={{
+          header: ({navigation}) => (
+            <Header navigateToProfile={() => navigation.navigate('Profile')} />
+          ),
+        }}
       />
       <Stack.Screen name="Create Class" component={CreateClass} />
       <Stack.Screen name="Join Class" component={JoinClass} />

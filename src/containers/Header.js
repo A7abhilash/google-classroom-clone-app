@@ -6,7 +6,7 @@ import {Image, View} from 'react-native';
 import icons from '../assets/icons';
 
 const Left = () => (
-  <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+  <View style={{flexDirection: 'row', alignItems: 'center'}}>
     <Image
       source={icons.icon}
       style={{
@@ -22,15 +22,14 @@ const Left = () => (
 
 const Header = ({navigateToProfile}) => {
   return (
-    <Appbar.Header
-      style={{backgroundColor: globalColors.Dark, marginHorizontal: -20}}>
+    <Appbar.Header style={{backgroundColor: globalColors.Dark}}>
       <Appbar.Content title={<Left />} />
       <Appbar.Action
         icon={() => (
           <MaterialIcons
             name="account-circle"
             size={26}
-            color={globalColors.Info}
+            color={globalColors.Aqua}
           />
         )}
         onPress={navigateToProfile}

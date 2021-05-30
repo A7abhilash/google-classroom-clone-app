@@ -36,7 +36,7 @@ export default function Home({navigation}) {
 
   return (
     <SafeAreaView style={globalStyles.component}>
-      <Header navigateToProfile={() => navigation.navigate('Profile')} />
+      {/* <Header navigateToProfile={() => navigation.navigate('Profile')} /> */}
 
       {classesAsTeacher?.length > 0 && (
         <View style={styles.view}>

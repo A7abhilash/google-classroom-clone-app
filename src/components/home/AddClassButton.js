@@ -15,14 +15,14 @@ const AddClassButton = ({navigateToScreen}) => {
       <Portal>
         <FAB.Group
           open={open}
-          icon={() => (
-            <MaterialIcons
-              name="add"
-              size={25}
-              color={globalColors.Dark}
-              style={{marginRight: 5}}
-            />
-          )}
+          fabStyle={{backgroundColor: globalColors.Warning}}
+          icon={() =>
+            open ? (
+              <MaterialIcons name="close" size={25} color={globalColors.Dark} />
+            ) : (
+              <MaterialIcons name="add" size={25} color={globalColors.Dark} />
+            )
+          }
           actions={[
             {
               icon: () => (
@@ -30,6 +30,7 @@ const AddClassButton = ({navigateToScreen}) => {
                   name="class"
                   size={20}
                   color={globalColors.Dark}
+                  style={{marginLeft: 2, marginTop: 2}}
                 />
               ),
               label: 'Create Class',
@@ -41,6 +42,7 @@ const AddClassButton = ({navigateToScreen}) => {
                   name="subdirectory-arrow-right"
                   size={20}
                   color={globalColors.Dark}
+                  style={{marginLeft: 4, marginTop: 2}}
                 />
               ),
               label: 'Join Class',

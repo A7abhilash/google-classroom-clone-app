@@ -123,6 +123,9 @@ export default function PostToClass({
               numberOfLines={5}
             />
             <SelectDocumentButton setDocument={setDocument} />
+            <Text style={styles.text}>
+              *Document for assignment is an optional
+            </Text>
             <Button
               mode="contained"
               color={globalColors.Success}

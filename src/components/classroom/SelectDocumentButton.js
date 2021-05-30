@@ -7,9 +7,13 @@ import {useMsg} from '../../contexts/MsgContext';
 import {globalColors} from '../../styles/styles';
 import {Subheading} from 'react-native-paper';
 
-export default function SelectDocumentButton({setDocument}) {
+export default function SelectDocumentButton({
+  setDocument,
+  loading,
+  submission,
+}) {
   const {setAlert, setToast} = useMsg();
-  const [name, setName] = useState(null);
+  const [name, setName] = useState(submission ? submission.file.name : null);
 
   const normalizePath = path => {
     if (Platform.OS === 'ios' || Platform.OS === 'android') {
@@ -56,7 +60,10 @@ export default function SelectDocumentButton({setDocument}) {
   };
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={handleSelectFile}>
+      <TouchableOpacity
+        disabled={loading || submission !== null}
+        style={styles.button}
+        onPress={handleSelectFile}>
         <MaterialIcons
           name="upload-file"
           size={28}
@@ -70,7 +77,6 @@ export default function SelectDocumentButton({setDocument}) {
             : 'No file chosen...'}
         </Subheading>
       </TouchableOpacity>
-      <Text style={styles.text}>*Document for assignment is an optional</Text>
     </View>
   );
 }

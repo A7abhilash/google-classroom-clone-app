@@ -2,8 +2,10 @@ import {useEffect, useState} from 'react';
 import {database, storage} from '../firebase';
 import {useAuth} from '../contexts/AuthContext';
 import {useMsg} from '../contexts/MsgContext';
+import {useNavigation} from '@react-navigation/native';
 
 function useClass(classId = null) {
+  const navigation = useNavigation();
   const {setToast: setMsg} = useMsg();
   const {currentUser} = useAuth();
   const [loading, setLoading] = useState(false);
@@ -96,6 +98,7 @@ function useClass(classId = null) {
   //upload file in classroom folder
   const uploadFileToDriveAndPostContent = async (
     content,
+    res,
     file,
     postContent,
   ) => {
@@ -103,7 +106,10 @@ function useClass(classId = null) {
     if (file) {
       try {
         setLoading(true);
-        const uploadTask = storage.ref().child(`/gd/${Date.now()}`).put(file);
+        const uploadTask = storage()
+          .ref()
+          .child(`/gd/${Date.now()}`)
+          .putString(res, 'base64', {contentType: file.type});
         uploadTask.on(
           'state_changed',
           snapshot => {
@@ -133,6 +139,7 @@ function useClass(classId = null) {
           },
           err => {
             setMsg(err.code);
+            setLoading(false);
           },
           async () => {
             // Upload completed successfully, now we can get the download URL
@@ -172,6 +179,7 @@ function useClass(classId = null) {
       setMsg('Posting your material...');
       const res = await database.materials().add(material);
       let {id} = res;
+      navigation.replace('Material', {classId, materialId: id});
       // history.push(`/classroom/${classId}/material/${id}`);
       setMsg('New material posted');
     } catch (err) {
@@ -188,6 +196,7 @@ function useClass(classId = null) {
       setMsg('Posting assignment...');
       const res = await database.assignments().add(assignment);
       let {id} = res;
+      navigation.replace('Assignment', {classId, assignmentId: id});
       // history.push(`/classroom/${classId}/assignment/${id}`);
       setMsg('New assignment posted');
     } catch (err) {
@@ -217,6 +226,7 @@ function useClass(classId = null) {
         .doc(assignmentId)
         .update({submissions: [assignment, ...data.submissions]});
       // history.replace(`/classroom/${classId}`);
+      navigation.goBack();
       setMsg('Assignment Submitted');
     } catch (err) {
       console.log(err.message);

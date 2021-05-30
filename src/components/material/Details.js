@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Button, Caption, Headline, Paragraph} from 'react-native-paper';
+import {Caption, Headline, Paragraph} from 'react-native-paper';
 import icons from '../../assets/icons';
 import {globalColors} from '../../styles/styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -60,8 +60,11 @@ function Details({content, type}) {
                 style={{
                   fontSize: 20,
                   color: globalColors.Dark,
+                  width: '90%',
                 }}>
-                {content.file.name}
+                {content.file.name.length > 26
+                  ? `${content.file.name.substring(0, 30)}...`
+                  : content.file.name}
               </Text>
             </TouchableOpacity>
           </View>

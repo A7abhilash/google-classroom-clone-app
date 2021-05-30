@@ -52,7 +52,7 @@ export default function DisplayClassPosts({
       {items.length ? (
         <View>
           <FlatList
-            data={items}
+            data={items.reverse()}
             keyExtractor={item => item.id.toString()}
             renderItem={renderItem}
             showsVerticalScrollIndicator={false}

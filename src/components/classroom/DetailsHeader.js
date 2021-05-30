@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
 import {globalColors, globalStyles} from '../../styles/styles';
-import PostToClass from './PostToClass';
 
-export default function DetailsHeader({currentClass, isTeacher}) {
-  const [openModal, setOpenModal] = useState(false);
-
+export default function DetailsHeader({currentClass}) {
   return (
     <View style={styles.container}>
       <View>
@@ -17,18 +13,6 @@ export default function DetailsHeader({currentClass, isTeacher}) {
           {currentClass.className} - {currentClass.subjectCode}
         </Text>
       </View>
-      {isTeacher && (
-        <View>
-          <Button
-            mode="contained"
-            color={globalColors.Info}
-            // post-add
-            onPress={() => setOpenModal(true)}>
-            Post
-          </Button>
-        </View>
-      )}
-      <PostToClass openModal={openModal} setOpenModal={setOpenModal} />
     </View>
   );
 }
@@ -39,7 +23,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
     backgroundColor: globalColors.Primary,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

@@ -4,6 +4,7 @@ import DetailsHeader from '../components/classroom/DetailsHeader';
 import DisplayClassPeople from '../components/classroom/DisplayClassPeople';
 import DisplayClassPosts from '../components/classroom/DisplayClassPosts';
 import PendingWork from '../components/classroom/PendingWork';
+import PostToClass from '../components/classroom/PostToClass';
 import SelectOptions from '../components/classroom/SelectOptions';
 import Loading from '../containers/Loading';
 import {useAuth} from '../contexts/AuthContext';
@@ -13,9 +14,17 @@ import {globalStyles} from '../styles/styles';
 export default function Classroom({route, navigation}) {
   const {classId} = route.params;
   const {currentUser} = useAuth();
-  const {error, currentClass, materials, assignments, isTeacher} = useClass(
-    classId,
-  );
+  const {
+    loading,
+    error,
+    currentClass,
+    materials,
+    assignments,
+    isTeacher,
+    postNewMaterial,
+    postNewAssignment,
+    uploadFileToDriveAndPostContent,
+  } = useClass(classId);
   const [selectedOption, setSelectedOption] = useState('Materials');
 
   const switchContent = () => {
@@ -93,6 +102,16 @@ export default function Classroom({route, navigation}) {
         setSelectedOption={setSelectedOption}
       />
       {materials !== null && assignments !== null && switchContent()}
+
+      {isTeacher && (
+        <PostToClass
+          loading={loading}
+          classId={classId}
+          postNewMaterial={postNewMaterial}
+          postNewAssignment={postNewAssignment}
+          uploadFileToDriveAndPostContent={uploadFileToDriveAndPostContent}
+        />
+      )}
     </View>
   ) : (
     <Loading />

@@ -33,7 +33,7 @@ export default function Register({navigation}) {
   };
 
   return (
-    <View style={{...styles.container, ...globalStyles.component}}>
+    <View style={styles.container}>
       <View style={styles.innerView}>
         <Text
           style={{
@@ -45,14 +45,14 @@ export default function Register({navigation}) {
         </Text>
         <View style={{marginVertical: 10}}>
           <TextInput
-            mode="outlined"
+            mode="flat"
             style={styles.input}
             label="Email"
             value={email}
             onChangeText={setEmail}
           />
           <TextInput
-            mode="outlined"
+            mode="flat"
             style={styles.input}
             label="Password"
             value={password}
@@ -60,7 +60,7 @@ export default function Register({navigation}) {
             secureTextEntry
           />
           <TextInput
-            mode="outlined"
+            mode="flat"
             style={styles.input}
             label="Confirm Password"
             value={cPassword}
@@ -95,13 +95,13 @@ export default function Register({navigation}) {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
+    ...globalStyles.component,
   },
   innerView: {
-    marginHorizontal: 20,
-    padding: 10,
-    backgroundColor: globalColors.Light,
+    padding: 15,
+    backgroundColor: globalColors.Dark,
     borderRadius: 20,
-    elevation: 2,
+    elevation: 4,
   },
   input: {
     marginVertical: 5,
@@ -112,5 +112,6 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
+    color: globalColors.Light,
   },
 });
